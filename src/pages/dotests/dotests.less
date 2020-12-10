@@ -1,0 +1,109 @@
+.dotests {
+    min-height: calc(~"100vh - 54PX");
+    background: url("../../static/img/dotests-bg.png") 0 -40PX;
+    background-size: 100%;
+    padding: 40PX 10PX 14PX;
+    .dotests-right {
+        position: fixed;
+        top: 69PX;
+        right: 0;
+        text-align: center;
+        width: 74PX;
+        height: 30PX;
+        line-height: 30PX;
+        background: #ffffff;
+        color: #ff9900;
+        box-shadow: 0PX 2PX 4PX 0PX #d26900, inset -5PX -3PX 14PX 6PX #ffebc3;
+        border-radius: 100PX 0PX 0PX 100PX;
+    }
+    .dotests-title {
+        margin-left: 14PX;
+        height: 60PX;
+        line-height: 60PX;
+    }
+    .dotests-bottom {
+        position: relative;
+    }
+    .dotests-love {
+        position: absolute;
+        width: 29PX;
+        height: 27PX;
+        top: -14PX;
+        right: 60PX;
+    }
+    .dotests-main {
+        min-height: 70vh;
+        padding: 24PX 12PX;
+        margin-top: 18PX;
+        background: #fff;
+        box-shadow: inset 0PX 3PX 12PX 4PX #fff7d2;
+        border-radius: 10PX;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .dotests-a {
+        width: 100%;
+    }
+    .dotests-list {
+        align-items: center;
+        width: 100%;
+        margin-top: 15PX;
+        height: 38PX;
+        background: #eeeeee;
+        border-radius: 19PX;
+        border: 1PX solid #eeeeee;
+        .dotests-nums {
+            text-align: center;
+            margin-left: 14PX;
+            width: 20PX;
+            height: 20PX;
+            border-radius: 10PX;
+            background: #9f9f9f;
+        }
+        .dotests-list-text {
+            margin-left: 14PX;
+        }
+    }
+    .active {
+        background: #fcd000;
+        border: 1PX solid #030303;
+        .dotests-nums {
+            background: #030303;
+        }
+    }
+}
+.dotests-enter {
+    min-height: 100vh;
+    overflow: scroll;
+}
+.dotests-enter-img {
+    display: block;
+    width: 100vw;
+}
+.dotests-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    bottom: 50PX;
+    text-align: center;
+}
+.dotests-enter-btn {
+    width: 70vw;
+    height: auto;
+    animation:mymove 2s infinite;
+    @keyframes mymove {
+        0% {
+            transform: scale(1); /*开始为原始大小*/
+        }
+        25% {
+            transform: scale(1.1); /*放大1.1倍*/
+        }
+        50% {
+            transform: scale(1);
+        }
+        75% {
+            transform: scale(1.1);
+        }
+    }
+}
