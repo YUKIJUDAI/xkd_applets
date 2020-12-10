@@ -4,13 +4,14 @@ import qs from "qs";
 
 export default {
     get(url, params = {}) {
+        url = url.includes("http") ? url : baseUrl + url;
         return new Promise((resolve, reject) => {
             Taro.showLoading({
                 title: "加载中",
                 mask: true,
             });
             Taro.request({
-                url: baseUrl + url + "?" + qs.stringify(params),
+                url: url + "?" + qs.stringify(params),
                 method: "GET",
                 header: {
                     "Content-Type":
@@ -28,13 +29,14 @@ export default {
         });
     },
     post(url, params = {}) {
+        url = url.includes("http") ? url : baseUrl + url;
         return new Promise((resolve, reject) => {
             Taro.showLoading({
                 title: "加载中",
                 mask: true,
             });
             Taro.request({
-                url: baseUrl + url,
+                url,
                 data: qs.stringify(params),
                 method: "POST",
                 header: {

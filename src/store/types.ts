@@ -5,10 +5,17 @@ export interface SetLogAction {
     value: { [propsName: string]: any };
 }
 
-export const SET_LIST = "SET_LIST";
+export const RESET_LOG = "RESET_LOG";
 
-export interface SetListAction {
-    type: typeof SET_LIST;
+export interface RESETLogAction {
+    type: typeof RESET_LOG;
+    value: { [propsName: string]: any };
+}
+
+export const SET_RESULT = "SET_RESULT";
+
+export interface SetResultAction {
+    type: typeof SET_RESULT;
     value: { [propsName: string]: any };
 }
 

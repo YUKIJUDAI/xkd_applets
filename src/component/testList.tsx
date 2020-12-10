@@ -2,12 +2,11 @@ import React from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Text, Button } from "@tarojs/components";
 
-import { TestListType } from "../data/data";
 import { qnUrl } from "../config/config";
 
-export const TestList: React.FunctionComponent<{
-    data: TestListType;
-}> = (props: { data: TestListType }) => {
+export const TextList: React.FunctionComponent<{
+    data: any;
+}> = (props: { data: any }) => {
     const toTest = (id: string | number) => {
         Taro.navigateTo({ url: `/pages/dotests/dotests?id=${id}` });
     };
@@ -32,7 +31,9 @@ export const TestList: React.FunctionComponent<{
                         className="test-list-center-hot-img"
                         src={require("../static/icon/icon-hot.png").default}
                     ></Image>
-                    <Text className="font11 color999">{props.data.hot}</Text>
+                    <Text className="font11 color999">
+                        {props.data.hot}人已测
+                    </Text>
                 </View>
             </View>
             <View className="test-list-right fr">
@@ -40,13 +41,13 @@ export const TestList: React.FunctionComponent<{
                     type="primary"
                     size="mini"
                     className="font12 test-list-right-btn"
-                    onClick={() => toTest(props.data.unique_code)}
+                    onClick={() => toTest(props.data.id)}
                 >
-                    测试
+                    开始
                 </Button>
             </View>
         </View>
     );
 };
 
-export default TestList;
+export default TextList;

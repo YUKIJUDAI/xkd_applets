@@ -104,7 +104,11 @@ class Index extends Component<any, State> {
                 Object.assign(this.props.ttInfo, result.result[0] || {})
             );
         }
-        Taro.reLaunch({ url: "/pages/index/index" });
+        Taro.reLaunch({
+            url: (Taro.Current.router as any).params.jump
+                ? (Taro.Current.router as any).params.jump
+                : "/pages/index/index",
+        });
     }
 
     render() {

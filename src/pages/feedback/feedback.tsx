@@ -6,6 +6,7 @@ import { AtToast, AtButton } from "taro-ui";
 import "./feedback.less";
 
 interface State {
+    type: number;
     files: Array<{ url: string }>;
     isOpened: boolean;
 }
@@ -14,10 +15,13 @@ export default class feedback extends Component<any, State> {
     constructor(props: any) {
         super(props);
         this.state = {
+            type: 0,
             files: [],
             isOpened: false,
         };
     }
+
+    listArray: Array<string> = ["功能异常", "产品建议", "投诉", "其他"];
 
     onChange(files) {
         this.setState({
@@ -34,18 +38,23 @@ export default class feedback extends Component<any, State> {
                             反馈类型<Text className="color999">（必填）</Text>
                         </View>
                         <View className="feedback-btn-list flexsb">
-                            <View className="feedback-btn active font12 color999">
-                                功能异常
-                            </View>
-                            <View className="feedback-btn font12 color999">
-                                产品建议
-                            </View>
-                            <View className="feedback-btn font12 color999">
-                                投诉
-                            </View>
-                            <View className="feedback-btn font12 color999">
-                                其他
-                            </View>
+                            {this.listArray.map((item, i) => {
+                                return (
+                                    <View
+                                        className={`feedback-btn font12 color999 ${
+                                            this.state.type === i
+                                                ? "active"
+                                                : null
+                                        }`}
+                                        key={i}
+                                        onClick={() =>
+                                            this.setState({ type: i })
+                                        }
+                                    >
+                                        {item}
+                                    </View>
+                                );
+                            })}
                         </View>
                     </View>
                     <View className="feedback-msg font14 color333">
@@ -81,7 +90,15 @@ export default class feedback extends Component<any, State> {
                         placeholder="QQ/微信/手机号～"
                     />
                 </View>
-                <AtButton type='primary' className="feedback-sub" onClick={()=>{this.setState({isOpened:true})}}>提交反馈</AtButton>
+                <AtButton
+                    type="primary"
+                    className="feedback-sub"
+                    onClick={() => {
+                        this.setState({ isOpened: true });
+                    }}
+                >
+                    提交反馈
+                </AtButton>
                 <AtToast
                     isOpened={this.state.isOpened}
                     text="反馈成功"

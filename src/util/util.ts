@@ -12,8 +12,23 @@ export const decrypt = (encryptedData, sessionKey, iv) => {
         Buffer.from(sessionKey, "base64"),
         Buffer.from(iv, "base64")
     );
-    
+
     let ret: any = decipher.update(encryptedData, "base64");
     ret += decipher.final();
     return JSON.parse(ret);
+};
+
+export const compareVersionEle = (currVersion, targetVerison) => {
+    if (!currVersion || !targetVerison) return false;
+    const curr = currVersion.split(".");
+    const target = targetVerison.split(".");
+    for (let i = 0; i < curr.length; i++) {
+        if (parseInt(curr[i]) > parseInt(target[i])) {
+            return true;
+        }
+        if (parseInt(curr[i]) < parseInt(target[i])) {
+            return false;
+        }
+    }
+    return true;
 };

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunkMiddleware from "redux-thunk";
 import Taro from "@tarojs/taro";
-import { logReducer, listReducer, ttinfoReducer } from "./reducers";
+import { logReducer, resultReducer, ttinfoReducer } from "./reducers";
 
 const composeEnhancers = compose;
 
@@ -9,7 +9,7 @@ const middlewares = [thunkMiddleware];
 
 const rootReducer = combineReducers({
     log: logReducer,
-    list: listReducer,
+    result: resultReducer,
     ttInfo: ttinfoReducer,
 });
 
@@ -27,7 +27,7 @@ export default function configStore() {
         rootReducer,
         {
             log: Taro.getStorageSync("log") || {},
-            list: Taro.getStorageSync("list") || {},
+            result: Taro.getStorageSync("result") || {},
             ttInfo: Taro.getStorageSync("ttInfo") || {},
         },
         enhancer

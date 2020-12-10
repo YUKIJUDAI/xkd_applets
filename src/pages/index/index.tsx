@@ -8,30 +8,19 @@ import {
     Text,
     Button,
 } from "@tarojs/components";
-import { connect } from "react-redux";
 
 import Navigation from "../../component/navigation";
-import TextList from "../../component/testList";
-import { setList } from "../../store/actions";
+import List from "../../component/List";
 import { mini_app_id, qnUrl } from "../../config/config";
-import { TestListType } from "../../data/data";
 import http from "../../util/http";
 
 import "./index.less";
 
 interface State {
-    list: Array<TestListType>;
+    list: Array<any>;
     bannerList: Array<{ [propsName: string]: any }>;
 }
 
-@connect(
-    ({ list }) => ({ list }),
-    (dispatch) => ({
-        setList(value) {
-            dispatch(setList(value));
-        },
-    })
-)
 class Index extends Component<any, State> {
     constructor(props: any) {
         super(props);
@@ -58,8 +47,7 @@ class Index extends Component<any, State> {
             mini_app_id,
         });
         if (result.code !== 200) return;
-        const data = JSON.parse(result.result);
-        this.props.setList(data);
+        const data = result.result;
         this.setState({ list: Object.values(data) });
     }
 
@@ -112,19 +100,17 @@ class Index extends Component<any, State> {
                                                         }
                                                     ></Image>
                                                     <Text className="font11 color999">
-                                                        {item.hot}
+                                                        {item.hot}人已测
                                                     </Text>
                                                     <Button
                                                         type="primary"
                                                         size="mini"
                                                         className="font12 fr"
                                                         onClick={() =>
-                                                            this.toTest(
-                                                                item.unique_code
-                                                            )
+                                                            this.toTest(item.id)
                                                         }
                                                     >
-                                                        测试
+                                                        开始
                                                     </Button>
                                                 </View>
                                             </View>
@@ -135,12 +121,7 @@ class Index extends Component<any, State> {
                         </Swiper>
                     </View>
                 </View>
-                <View className="index-list">
-                    <Navigation src="game" title="趣味精选"></Navigation>
-                    {this.state.list.map((item, i) => {
-                        return <TextList data={item} key={i}></TextList>;
-                    })}
-                </View>
+                <List></List>
             </View>
         );
     }

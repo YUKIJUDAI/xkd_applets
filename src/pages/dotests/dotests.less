@@ -1,19 +1,24 @@
 .dotests {
     min-height: calc(~"100vh - 54PX");
-    background: url("../../static/img/dotests-bg.png") 0 -40PX;
-    background-size: 100%;
     padding: 40PX 10PX 14PX;
+    .dotests-top {
+        margin-top: 50PX;
+    }
+    .dotests-avatar {
+        border: 4PX solid #fff;
+    }
     .dotests-right {
         position: fixed;
-        top: 69PX;
+        top: 102PX;
         right: 0;
+        z-index: 99;
         text-align: center;
         width: 74PX;
         height: 30PX;
         line-height: 30PX;
         background: #ffffff;
-        color: #ff9900;
-        box-shadow: 0PX 2PX 4PX 0PX #d26900, inset -5PX -3PX 14PX 6PX #ffebc3;
+        color: #666;
+        box-shadow: 0PX 1PX 2PX 0PX #666;
         border-radius: 100PX 0PX 0PX 100PX;
     }
     .dotests-title {
@@ -24,33 +29,54 @@
     .dotests-bottom {
         position: relative;
     }
-    .dotests-love {
-        position: absolute;
-        width: 29PX;
-        height: 27PX;
-        top: -14PX;
-        right: 60PX;
-    }
     .dotests-main {
-        min-height: 70vh;
+        min-height: 55vh;
         padding: 24PX 12PX;
+        padding-bottom: 80PX;
         margin-top: 18PX;
         background: #fff;
-        box-shadow: inset 0PX 3PX 12PX 4PX #fff7d2;
         border-radius: 10PX;
+    }
+    .dotests-main-img-list {
         display: flex;
+        justify-content: flex-start;
         flex-wrap: wrap;
+        padding: 10PX 0;
+        .dotests-main-img {
+            width: 30%;
+            margin-left: 3%;
+            margin-bottom: 10PX;
+        } 
+    }
+    .dotests-q {
+        min-height: 60PX;
     }
     .dotests-a {
         width: 100%;
+    }
+    .dotests-atProgress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 30PX;
+        margin: 0 12PX;
+        border-radius: 15PX;
+        border: 2PX solid #333;
+        .at-progress__outer-inner,.at-progress__outer-inner-background {
+            border-radius: 15PX;
+        }
+    }
+    .dotests-list-img {
+        width: 60PX;
+        margin-left: 14PX;
     }
     .dotests-list {
         align-items: center;
         width: 100%;
         margin-top: 15PX;
-        height: 38PX;
+        padding: 10PX 0;
         background: #eeeeee;
-        border-radius: 19PX;
+        border-radius: 18PX;
         border: 1PX solid #eeeeee;
         .dotests-nums {
             text-align: center;

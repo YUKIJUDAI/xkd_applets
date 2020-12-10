@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import { View, Image, Text } from "@tarojs/components";
 import { AtAvatar } from "taro-ui";
 
-import { changeDay } from "../../util/util";
-import { setLog, setList } from "../../store/actions";
+import { reSetLog } from "../../store/actions";
 import { qnUrl } from "../../config/config";
 
 import "./me.less";
@@ -29,37 +28,37 @@ function HasLog(props) {
                 return (
                     <View className="log-list" key={i}>
                         <View className="log-time fontb font14 color333">
-                            完成时间：{item.logTime}
+                            完成时间：{item.time}
                         </View>
                         <View className="log-content flexs">
                             <Image
                                 className="log-content-left"
-                                src={qnUrl + item.logo}
+                                src={qnUrl + item["goods-img"]}
                             ></Image>
                             <View className="log-content-right">
                                 <View className="fontb font14 color333">
-                                    {item.name}
+                                    {item["goods-title"]}
                                 </View>
                                 <View className="font12 color999 log-content-right-content">
                                     {item.description}
                                 </View>
                                 <View className="font11 color999">
-                                    共{item.question_nums}题
+                                    共{item.number}题
                                 </View>
                             </View>
                         </View>
                         <View className="log-btn flexe">
                             <View
                                 className="log-btn-no font12 color999"
-                                onClick={() => props.toDel(item.unique_code)}
+                                onClick={() => props.toDel(item.id)}
                             >
                                 删除
                             </View>
                             <View
                                 className="log-btn-yes font12 color333"
-                                onClick={() => props.toTest(item.unique_code)}
+                                onClick={() => props.toTest(item.id)}
                             >
-                                测试
+                                开始
                             </View>
                         </View>
                     </View>
@@ -70,13 +69,10 @@ function HasLog(props) {
 }
 
 @connect(
-    ({ log, list, ttInfo }) => ({ log, list, ttInfo }),
+    ({ log, ttInfo }) => ({ log, ttInfo }),
     (dispatch) => ({
-        setLog(value) {
-            dispatch(setLog(value));
-        },
-        setList(value) {
-            dispatch(setList(value));
+        reSetLog(value) {
+            dispatch(reSetLog(value));
         },
     })
 )
@@ -93,7 +89,7 @@ export default class Me extends Component<any, State> {
     componentDidMount() {
         this.changeLog(this.props.log);
     }
-    componentWillReceiveProps({log}) {
+    componentWillReceiveProps({ log }) {
         this.changeLog(log);
     }
 
@@ -102,18 +98,8 @@ export default class Me extends Component<any, State> {
         if (Object.keys(log).length !== 0) {
             this.setState({ hasLog: true });
             let logList: Array<{ [propsName: string]: any }> = [];
-            Object.values(this.props.list).map((item: any) => {
-                if (log[item.unique_code]) {
-                    logList.push(
-                        Object.assign(
-                            { ...item },
-                            {
-                                logTime: changeDay(log[item.unique_code]),
-                            }
-                        )
-                    );
-                }
-            });
+
+            logList = Object.values(log);
             this.setState({ logList });
         }
     }
@@ -126,11 +112,11 @@ export default class Me extends Component<any, State> {
         Taro.navigateTo({ url: "/pages/feedback/feedback" });
     }
 
-    toDel(id) {
+    toDel = (id) => {
         let data = JSON.parse(JSON.stringify(this.props.log));
         delete data[id];
-        this.props.setLog(data);
-    }
+        this.props.reSetLog(data);
+    };
 
     render() {
         return (

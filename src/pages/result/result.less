@@ -1,0 +1,30 @@
+.result {
+    position: relative;
+    .result-list {
+        margin: 0 14PX;
+    }
+    .result-btn {
+        border-top: 15PX solid #f5f5f5;
+        border-bottom: 15PX solid #f5f5f5;
+        padding: 22PX 27PX;
+        display: flex;
+        justify-content: space-between;
+        .result-btn-img {
+            width: 90PX;
+            height: 40PX;
+        }
+        .share-btn {
+            width: 90PX;
+            height: 40PX;
+            border-radius: 6PX;
+            border: 0;
+            background: url("../../static/img/share.png") no-repeat center center;
+            background-size: cover;
+            margin: 0;
+            &::after {
+                border: 0;
+            }
+        }
+
+    }
+}

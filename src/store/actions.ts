@@ -1,4 +1,4 @@
-import { SET_LOG, SET_LIST, SET_TT_INFO } from "./types";
+import { SET_LOG, SET_RESULT, SET_TT_INFO, RESET_LOG } from "./types";
 
 export function setLog(value: any) {
     return {
@@ -7,9 +7,16 @@ export function setLog(value: any) {
     };
 }
 
-export function setList(value: any) {
+export function reSetLog(value: any) {
     return {
-        type: SET_LIST,
+        type: RESET_LOG,
+        value,
+    };
+}
+
+export function setResult(value: any) {
+    return {
+        type: SET_RESULT,
         value,
     };
 }
